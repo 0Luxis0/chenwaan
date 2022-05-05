@@ -1,34 +1,63 @@
 <template>
-    <div class="hello">
-        <h1>{{ msg }}</h1>
-        <Slides/>
-        <p>
-            CHANGED a guide and recipes on how to configure / customize this project,<br>
-            check out the
-            <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-        </p>
-        <h3>Installed CLI Plugins</h3>
-        <ul>
-        </ul>
-        <h3>Essential Links</h3>
-        <ul>
-            <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-            <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-            <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-            <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-            <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-        </ul>
-        <h3>Ecosystem</h3>
-        <ul>
-            <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-            <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-            <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank"
-                   rel="noopener">vue-devtools</a></li>
-            <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-            <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-        </ul>
+
+<div>
+    <div class="top-contact">
+        <div>thing1</div>
+        <div>thing2</div>
+    </div>
+    <section class="dynamic-header">HEDDER</section>
+    <h2>hhehihihih</h2>
+    <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"></v-parallax>
+
+    <div>
+        HEP
+        <v-item-group class="navigation-selector">
+            <v-item v-model="current" v-for="n in 5" :key="`btn-${n}`"
+            v-slot="{ active, toggle, current }">
+                    <v-btn class="btn-nav-selector" :input-value="active" icon @click="toggle" >
+                        {{current}}
+                    </v-btn>
+
+            </v-item>
+        </v-item-group>
+
 
     </div>
+
+<!--    <v-card flat tile>-->
+<!--        <h1>fefefep</h1>-->
+<!--        <v-window v-model="current">-->
+<!--            <v-window-item v-for="n in length" :key="`card-${n}`">-->
+<!--                <v-card color="grey" height="200">-->
+<!--                    <v-row class="fill-height" align="center" justify="center">-->
+<!--                        <h1 style="font-size: 5rem;" class="white&#45;&#45;text">-->
+<!--                            SURAIDO {{ n }}-->
+<!--                        </h1>-->
+<!--                    </v-row>-->
+<!--                </v-card>-->
+<!--            </v-window-item>-->
+<!--        </v-window>-->
+
+<!--        <v-card-actions class="justify-center">-->
+
+<!--            <v-item-group v-model="current" mandatory>-->
+<!--                <v-item-->
+<!--                    v-for="n in length" :key="`btn-${n}`"-->
+<!--                    v-slot="{ active, toggle }">-->
+<!--                    <v-btn-->
+<!--                        :input-value="active" icon @click="toggle">-->
+<!--                        test-->
+<!--                        <v-icon>mdi-record</v-icon>-->
+<!--                    </v-btn>-->
+<!--                </v-item>-->
+<!--            </v-item-group>-->
+<!--        </v-card-actions>-->
+<!--    </v-card>-->
+
+<!--    <Slides/>-->
+
+    </div>
+
 
 </template>
 
@@ -37,33 +66,47 @@
 import Slides from './Slides.vue'
 
 export default {
-    name: 'HelloWorld',
-    components:{
+    name: 'Main',
+    components: {
         Slides
     },
-    props: {
-        msg: String
-    }
+    data: () => ({
+        current: 3,
+        elements: {}
+
+    })
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-    margin: 40px 0 0;
-}
 
-ul {
-    list-style-type: none;
-    padding: 0;
+@font-face {
+    font-family: Comfortaa;
+    src: url("../assets/static/Comfortaa-Regular.ttf")
 }
-
-li {
-    display: inline-block;
-    margin: 0 10px;
+* {
+    font-family: Comfortaa;
 }
+.top-contact {
+    display: flex;
+    justify-content: space-around;
+}
+.dynamic-header{
 
-a {
-    color: #42b983;
+}
+.btn-nav-selector{
+    background: red;
+    margin: 3px;
+}
+.navigation-selector{
+    position: fixed;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    right: 5px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid;
 }
 </style>
