@@ -98,12 +98,5 @@ li {
 a {
     color: #42b983;
 }
-.main{
 
-}
-.main-overlay{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-}
 </style>

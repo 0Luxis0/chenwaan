@@ -63,7 +63,7 @@
 
 <script>
 export default {
-    name: 'Slides',
+    name: 'ProductsServices',
     data: () => ({
         length: 3,
         current: 0,
@@ -98,12 +98,5 @@ li {
 a {
     color: #42b983;
 }
-.main{
 
-}
-.main-overlay{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-}
 </style>
