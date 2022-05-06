@@ -1,60 +1,36 @@
 <template>
 
-<div>
-    <div class="top-contact">
-        <div>thing1</div>
-        <div>thing2</div>
-    </div>
-    <section class="dynamic-header">HEDDER</section>
-    <h2>hhehihihih</h2>
-    <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"></v-parallax>
-
     <div>
-        HEP
-        <v-item-group class="navigation-selector">
-            <v-item v-model="current" v-for="n in 5" :key="`btn-${n}`"
-            v-slot="{ active, toggle, current }">
-                    <v-btn class="btn-nav-selector" :input-value="active" icon @click="toggle" >
-                        {{current}}
-                    </v-btn>
+        <div class="top-contact">
+            <div>thing1</div>
+            <div>thing2</div>
+        </div>
+        <section class="dynamic-header">HEDDER</section>
+        <h2>Main</h2>
 
-            </v-item>
-        </v-item-group>
+        <div>
+            <v-item-group class="navigation-selector">
+                <v-item v-model="currentPanel" v-for="n in numPanels" :key="`btn-${n}`"
+                v-slot="{ active, toggle, currentPanel }">
+                        <v-btn class="btn-nav-selector" :input-value="active" icon @click="toggle" >
+                            {{n}}
+                        </v-btn>
 
+                </v-item>
+            </v-item-group>
+        </div>
 
-    </div>
-
-<!--    <v-card flat tile>-->
-<!--        <h1>fefefep</h1>-->
-<!--        <v-window v-model="current">-->
-<!--            <v-window-item v-for="n in length" :key="`card-${n}`">-->
-<!--                <v-card color="grey" height="200">-->
-<!--                    <v-row class="fill-height" align="center" justify="center">-->
-<!--                        <h1 style="font-size: 5rem;" class="white&#45;&#45;text">-->
-<!--                            SURAIDO {{ n }}-->
-<!--                        </h1>-->
-<!--                    </v-row>-->
-<!--                </v-card>-->
-<!--            </v-window-item>-->
-<!--        </v-window>-->
-
-<!--        <v-card-actions class="justify-center">-->
-
-<!--            <v-item-group v-model="current" mandatory>-->
-<!--                <v-item-->
-<!--                    v-for="n in length" :key="`btn-${n}`"-->
-<!--                    v-slot="{ active, toggle }">-->
-<!--                    <v-btn-->
-<!--                        :input-value="active" icon @click="toggle">-->
-<!--                        test-->
-<!--                        <v-icon>mdi-record</v-icon>-->
-<!--                    </v-btn>-->
-<!--                </v-item>-->
-<!--            </v-item-group>-->
-<!--        </v-card-actions>-->
-<!--    </v-card>-->
-
-<!--    <Slides/>-->
+        <section v-for="p in panels" :key="p.panelNumber">
+            <v-window id="allPanels">
+                <v-window-item>
+                    <!--            <v-card color="grey">-->
+                    <!--                <v-row align="center" justify="center">-->
+                    <component :is="p.component"></component>
+                    <!--                </v-row>-->
+                    <!--            </v-card>-->
+                </v-window-item>
+            </v-window>
+        </section>
 
     </div>
 
@@ -64,42 +40,65 @@
 
 <script>
 import Slides from './Slides.vue'
+import CompanyCard from './CompanyCard.vue'
 
 export default {
     name: 'Main',
     components: {
-        Slides
+        CompanyCard,
+        Slides,
+
     },
     data: () => ({
-        current: 3,
-        elements: {}
+        currentPanel: 0,
+        panels: {},
+        numPanels: 0
+    }),
+    methods:{
+        getPanels(){
+            let panelOrder = [Slides, CompanyCard]
+            let allPanels = []
+            panelOrder.forEach( (p, n) => {
+                allPanels.push({panelNumber: n, component: p})
+            })
+            return allPanels
+        }
+    },
+    mounted() {
+        this.panels = this.getPanels()
 
-    })
+        this.numPanels = this.panels.length
+    },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 
 @font-face {
     font-family: Comfortaa;
     src: url("../assets/static/Comfortaa-Regular.ttf")
 }
+
 * {
     font-family: Comfortaa;
 }
+
 .top-contact {
     display: flex;
     justify-content: space-around;
 }
-.dynamic-header{
+
+.dynamic-header {
 
 }
-.btn-nav-selector{
+
+.btn-nav-selector {
     background: red;
     margin: 3px;
 }
-.navigation-selector{
+
+.navigation-selector {
     position: fixed;
     top: 50%;
     display: flex;
