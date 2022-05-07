@@ -1,5 +1,6 @@
 <template>
-    <div><h2>hhehihihih</h2>
+    <div>
+        <h2>VALUES</h2>
         <div class="hello">
 
             <p>

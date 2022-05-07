@@ -10,7 +10,7 @@
 
         <div>
             <v-item-group class="navigation-selector">
-                <v-item v-model="currentPanel" v-for="n in numPanels" :key="`btn-${n}`"
+                <v-item v-model="currentPanel" v-for="n in panels.length" :key="`btn-${n}`"
                 v-slot="{ active, toggle, currentPanel }">
                         <v-btn class="btn-nav-selector" :input-value="active" icon @click="toggle" >
                             {{n}}
@@ -52,11 +52,11 @@ export default {
     data: () => ({
         currentPanel: 0,
         panels: {},
-        numPanels: 0
     }),
     methods:{
         getPanels(){
             let panelOrder = [Slides, CompanyCard]
+
             let allPanels = []
             panelOrder.forEach( (p, n) => {
                 allPanels.push({panelNumber: n, component: p})
@@ -66,8 +66,6 @@ export default {
     },
     mounted() {
         this.panels = this.getPanels()
-
-        this.numPanels = this.panels.length
     },
 }
 </script>
