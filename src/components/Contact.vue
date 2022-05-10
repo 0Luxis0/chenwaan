@@ -63,7 +63,7 @@
 
 <script>
 export default {
-    name: 'Slides',
+    name: 'Contact', id: 'contact',
     data: () => ({
         length: 3,
         current: 0,

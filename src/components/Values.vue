@@ -64,7 +64,7 @@
 
 <script>
 export default {
-    name: 'Values',
+    name: 'Values', id: 'values',
     data: () => ({
         length: 3,
         current: 0,

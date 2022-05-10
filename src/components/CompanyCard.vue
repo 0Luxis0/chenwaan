@@ -29,7 +29,7 @@
 
 <script>
 export default {
-    name: 'CompanyCard',
+    name: 'CompanyCard', id: 'companycard',
     data: () => ({
         length: 3,
         current: 0,

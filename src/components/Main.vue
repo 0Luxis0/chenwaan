@@ -10,10 +10,10 @@
 
         <div>
             <v-item-group class="navigation-selector">
-                <v-item v-model="currentPanel" v-for="n in panels.length" :key="`btn-${n}`"
+                <v-item v-model="currentPanel" v-for="(id, n) in panelsIds" :key="`btn-${n}`"
                 v-slot="{ active, toggle, currentPanel }">
-                        <v-btn class="btn-nav-selector" :input-value="active" icon @click="toggle" >
-                            {{n}}
+                        <v-btn :href="'#'+id" class="btn-nav-selector" :input-value="active" icon @click="toggle" >
+                            {{id}}
                         </v-btn>
 
                 </v-item>
@@ -25,7 +25,7 @@
                 <v-window-item>
                     <!--            <v-card color="grey">-->
                     <!--                <v-row align="center" justify="center">-->
-                    <component :is="p.component"></component>
+                    <component :id="p.id" :is="p.component"></component>
                     <!--                </v-row>-->
                     <!--            </v-card>-->
                 </v-window-item>
@@ -52,6 +52,7 @@ export default {
     data: () => ({
         currentPanel: 0,
         panels: {},
+        panelsIds: {},
     }),
     methods:{
         getPanels(){
@@ -59,13 +60,14 @@ export default {
 
             let allPanels = []
             panelOrder.forEach( (p, n) => {
-                allPanels.push({panelNumber: n, component: p})
+                allPanels.push({panelNumber: n, title: p.name, id: p.id, component: p})
             })
             return allPanels
         }
     },
     mounted() {
         this.panels = this.getPanels()
+        this.panelsIds = this.panels.map( p => {return p.id})
     },
 }
 </script>

@@ -63,7 +63,7 @@
 
 <script>
 export default {
-    name: 'ProductsServices',
+    name: 'Products and Services', id: 'productsservices',
     data: () => ({
         length: 3,
         current: 0,

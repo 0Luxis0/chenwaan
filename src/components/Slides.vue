@@ -37,6 +37,7 @@
 <script>
 
 export default {
+    name: 'Slides', id: 'slides',
     data: () => ({
         length: 3,
         onboarding: 0,
@@ -64,9 +65,9 @@ export default {
         // },
     },
     mounted() {
-        // this.images.push(require('./../assets/mainPanelSlides/boxer.png'))
-        // this.images.push(require('./../assets/mainPanelSlides/labrador.jpg'))
-        // this.images.push(require('./../assets/mainPanelSlides/wild.jpg'))
+        this.images.push(require('./../assets/mainPanelSlides/boxer.png'))
+        this.images.push(require('./../assets/mainPanelSlides/labrador.jpg'))
+        this.images.push(require('./../assets/mainPanelSlides/wild.jpg'))
     }
 }
 </script>
